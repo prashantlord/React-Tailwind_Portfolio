@@ -26,7 +26,7 @@ const projects = [
     description: "Simple static, multi page, responsive portfolio website ",
     image: "/projects/project3.png",
     tags: ["HTMl", "CSS", "JS"],
-    demoUrl: "https://prashantstha.netlify.app/",
+    demoUrl: "https://prashant-demo.netlify.app/",
     githubUrl: "https://github.com/prashantlord/Portfolio",
   },
 ];
