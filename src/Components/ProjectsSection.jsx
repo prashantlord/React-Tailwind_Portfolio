@@ -6,7 +6,7 @@ const projects = [
     id: 1,
     title: "Ecommerce Website",
     description: "Simple website created using HTML CSS and JavaScript",
-    image: "/public/Projects/ecommerce.png",
+    image: "/projects/project1.png",
     tags: ["HTMl", "CSS", "JS"],
     demoUrl: "https://childrenshub.netlify.app/",
     githubUrl: "https://github.com/prashantlord/Childrens_hub",
@@ -15,7 +15,7 @@ const projects = [
     id: 2,
     title: "Youtube Clone",
     description: "Youtube clone website created using basic technologies",
-    image: "/public/Projects/youtube.png",
+    image: "/projects/project2.png",
     tags: ["HTMl", "CSS", "JS"],
     demoUrl: "#",
     githubUrl: "https://github.com/prashantlord/youtube-clone",
@@ -24,7 +24,7 @@ const projects = [
     id: 1,
     title: "Portfolio Website",
     description: "Simple static, multi page, responsive portfolio website ",
-    image: "/public/Projects/portfolio.png",
+    image: "/projects/project3.png",
     tags: ["HTMl", "CSS", "JS"],
     demoUrl: "https://prashantstha.netlify.app/",
     githubUrl: "https://github.com/prashantlord/Portfolio",
@@ -59,7 +59,7 @@ function ProjectSection() {
                   {project.tags.map((tag, key) => (
                     <span
                       key={key}
-                      className="px-2 py-1 text-xs font-medium rounded-full bg-secondary bg-secondary text-secondary-forefround "
+                      className="px-2 py-1 text-xs font-semibold rounded-full bg-secondary bg-secondary text-secondary-forefround "
                     >
                       {tag}
                     </span>

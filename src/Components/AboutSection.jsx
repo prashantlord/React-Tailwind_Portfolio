@@ -26,7 +26,12 @@ function AboutSection() {
               <a href="#contact" className="cosmic-button">
                 Get in Touch
               </a>
-              <a className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 cursor-pointer  ">
+              <a
+                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 cursor-pointer  "
+                href="/Resume.pdf"
+                download
+                target="_black"
+              >
                 Download Resume
               </a>
             </div>

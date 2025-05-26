@@ -48,7 +48,7 @@ function SkillSection() {
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-large shadow-xs card-hover"
+              className="bg-card p-6 rounded-large shadow-xs card-hover select-none"
             >
               <div className="text-left mb-4">
                 <h3 className="font-semibold text-lg "> {skill.name}</h3>
