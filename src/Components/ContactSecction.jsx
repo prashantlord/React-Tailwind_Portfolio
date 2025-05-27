@@ -9,16 +9,13 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "../lib/utils";
-
 import { useState } from "react";
-import themeToggle from "./ThemeToggle";
-import StarBackground from "./StarBackgound";
 
 function ContactSection() {
   {
     /* Contact From on Submit Event  */
   }
-  const [emailSent, setEmailSent] = useState(false);
+  const [emailSent, setEmailSent] = useState();
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -41,10 +38,6 @@ function ContactSection() {
       setEmailSent(true);
     }
   };
-
-  function intervalFn() {
-    setEmailSent(false);
-  }
 
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary-30  ">
@@ -187,22 +180,41 @@ function ContactSection() {
               <button
                 type="submit"
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2 cursor-pointer",
-                  emailSent
-                    ? "bg-primary/20 hover:shadow-none hover:scale-100 "
-                    : ""
+                  "cosmic-button w-full flex items-center justify-center gap-2 cursor-pointer"
                 )}
-                disabled={emailSent}
               >
-                {emailSent ? "Message Sent" : "Send Message"}
-
+                Send Message
                 <Send size={16} />
               </button>
             </form>
           </div>
         </div>
       </div>
-      {emailSent ? setTimeout(intervalFn, 5000) : ""}
+      {emailSent ? (
+        <div
+          className={cn(
+            "w-dvw h-dvh bg-white/5 z-100 fixed top-0 flex justify-center items-center left-0 opacity-0 transition-all animate-fade-in-delay-2 "
+          )}
+        >
+          <div className="bg-card p-8 rounded-lg shadow-xs border-2 border-primary">
+            <div className="flex flex-col items-center justify-center gap-6">
+              <Mail />
+              <div>
+                <h2>Thank You</h2>
+                <p>Your message has been sent!</p>
+              </div>
+              <button
+                className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition cursor-pointer"
+                onClick={() => setEmailSent(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </section>
   );
 }
