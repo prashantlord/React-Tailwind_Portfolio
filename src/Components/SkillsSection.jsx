@@ -27,7 +27,7 @@ function SkillSection() {
           My <span className="text-primary">Skills</span>
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12 ">
+        <div className="flex flex-wrap justify-center  gap-4 mb-12 ">
           {categories.map((category, key) => (
             <button
               key={key}

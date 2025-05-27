@@ -10,11 +10,42 @@ import {
 } from "lucide-react";
 import { cn } from "../lib/utils";
 
+import { useState } from "react";
+import themeToggle from "./ThemeToggle";
+import StarBackground from "./StarBackgound";
+
 function ContactSection() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTimeout(() => {});
+  {
+    /* Contact From on Submit Event  */
+  }
+  const [emailSent, setEmailSent] = useState(false);
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "125c53cf-787c-440d-8252-cdf285268ec9");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    }).then((res) => res.json());
+
+    if (res.success) {
+      setEmailSent(true);
+    }
   };
+
+  function intervalFn() {
+    setEmailSent(false);
+  }
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary-30  ">
       <div className="container mx-auto max-w-5xl">
@@ -103,7 +134,7 @@ function ContactSection() {
           </div>
           <div className="bg-card p-8 rounded-lg shadow-xs ">
             <h3 className="text-2xl font-semibold mb-6 ">Send a Message</h3>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={onSubmit}>
               <div>
                 <label
                   htmlFor="name"
@@ -114,6 +145,7 @@ function ContactSection() {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="Prashant Shrestha"
@@ -130,6 +162,7 @@ function ContactSection() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="example@gmail.com"
@@ -145,6 +178,7 @@ function ContactSection() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to ..."
@@ -153,16 +187,22 @@ function ContactSection() {
               <button
                 type="submit"
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
+                  "cosmic-button w-full flex items-center justify-center gap-2 cursor-pointer",
+                  emailSent
+                    ? "bg-primary/20 hover:shadow-none hover:scale-100 "
+                    : ""
                 )}
+                disabled={emailSent}
               >
-                Send Message
+                {emailSent ? "Message Sent" : "Send Message"}
+
                 <Send size={16} />
               </button>
             </form>
           </div>
         </div>
       </div>
+      {emailSent ? setTimeout(intervalFn, 5000) : ""}
     </section>
   );
 }

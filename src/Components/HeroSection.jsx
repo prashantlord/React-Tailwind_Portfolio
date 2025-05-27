@@ -31,7 +31,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className=" absolute bottom-8 left-1/2 transform -tanslate-x-1/2 flex flex-col items-center animate-bounce ">
+      <div className=" absolute bottom-8 transform -tanslate-x-1/2 flex flex-col items-center animate-bounce ">
         <span className="text-sm text-muted-foreground mb-2 select-none">
           Scroll
         </span>
