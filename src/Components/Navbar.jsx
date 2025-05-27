@@ -54,7 +54,7 @@ function NavBar() {
 
         <button
           onClick={() => setIsMenueOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50  "
+          className="md:hidden p-2 max-sm:pr-8 text-foreground z-50  "
           aria-label={isMenuOpen ? "Close Menue" : "Open Menue"}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -75,6 +75,7 @@ function NavBar() {
                 key={key}
                 href={item.href}
                 className=" text-foreground hover:text-primary transition-color-300"
+                onClick={() => setIsMenueOpen(false)}
               >
                 {item.name}
               </a>

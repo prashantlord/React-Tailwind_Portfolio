@@ -17,7 +17,7 @@ const projects = [
     description: "Youtube clone website created using basic technologies",
     image: "/projects/project2.png",
     tags: ["HTMl", "CSS", "JS"],
-    demoUrl: "#",
+    demoUrl: "PageNotFound",
     githubUrl: "https://github.com/prashantlord/youtube-clone",
   },
   {
@@ -41,7 +41,7 @@ function ProjectSection() {
           A collection of projects I worked on while exploring and mastering new
           technologies.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 select-none ">
           {projects.map((project, key) => (
             <div
               key={key}
