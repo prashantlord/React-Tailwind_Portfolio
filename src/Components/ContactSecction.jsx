@@ -16,15 +16,15 @@ function ContactSection() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [message, setMessage] = useState();
-  const [loader, setLoader] = useState(false);
+  const [sendingMessage, setSendingMessage] = useState(false);
+
   {
     /* Contact From on Submit Event  */
   }
 
   const [emailSent, setEmailSent] = useState();
   const onSubmit = async (event) => {
-    setLoader(true);
-
+    setSendingMessage(true);
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -47,7 +47,7 @@ function ContactSection() {
       setName("");
       setEmail("");
       setMessage("");
-      setLoader(false);
+      setSendingMessage(false);
     }
   };
 
@@ -199,17 +199,16 @@ function ContactSection() {
                 type="submit"
                 className={cn(
                   "cosmic-button w-full flex items-center justify-center gap-2 cursor-pointer transition-all",
-                  loader
-                    ? " hover:scale-100 bg-primary/10 hover:shadow-none    "
+                  sendingMessage
+                    ? "hover:shadow-none hover:scale-100 bg-primary/30"
                     : ""
                 )}
-                disabled={!loader}
               >
-                {!loader ? "Send message" : "Sending"}
-                {!loader ? (
-                  <Send size={16} />
+                {sendingMessage ? "Sending" : "Send Message"}
+                {sendingMessage ? (
+                  <LoaderPinwheel size={20} className=" rotatingWheel" />
                 ) : (
-                  <LoaderPinwheel size={25} className=" rotatingWheel" />
+                  <Send size={16} />
                 )}
               </button>
             </form>
