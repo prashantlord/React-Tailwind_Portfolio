@@ -1,6 +1,7 @@
 import {
   Facebook,
   LinkedinIcon,
+  LoaderPinwheel,
   Mail,
   MapPin,
   Phone,
@@ -12,11 +13,18 @@ import { cn } from "../lib/utils";
 import { useState } from "react";
 
 function ContactSection() {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [message, setMessage] = useState();
+  const [loader, setLoader] = useState(false);
   {
     /* Contact From on Submit Event  */
   }
+
   const [emailSent, setEmailSent] = useState();
   const onSubmit = async (event) => {
+    setLoader(true);
+
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -36,6 +44,10 @@ function ContactSection() {
 
     if (res.success) {
       setEmailSent(true);
+      setName("");
+      setEmail("");
+      setMessage("");
+      setLoader(false);
     }
   };
 
@@ -141,7 +153,9 @@ function ContactSection() {
                   name="name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="Prashant Shrestha"
+                  placeholder="Dibas Pathak"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -158,7 +172,9 @@ function ContactSection() {
                   name="email"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="example@gmail.com"
+                  placeholder="dibaspathak@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -175,16 +191,26 @@ function ContactSection() {
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to ..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 />
               </div>
               <button
                 type="submit"
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2 cursor-pointer"
+                  "cosmic-button w-full flex items-center justify-center gap-2 cursor-pointer transition-all",
+                  loader
+                    ? " hover:scale-100 bg-primary/10 hover:shadow-none    "
+                    : ""
                 )}
+                disabled={!loader}
               >
-                Send Message
-                <Send size={16} />
+                {!loader ? "Send message" : "Sending"}
+                {!loader ? (
+                  <Send size={16} />
+                ) : (
+                  <LoaderPinwheel size={25} className=" rotatingWheel" />
+                )}
               </button>
             </form>
           </div>
